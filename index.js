@@ -3,10 +3,11 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 
 // types
 import { typeDefs } from "./schema.js";
+import { resolvers } from "./resolver.js";
 
 const server = new ApolloServer({
     typeDefs,
-    // resolvers
+    resolvers
 });
 
 const { url } = await startStandaloneServer(server, {
