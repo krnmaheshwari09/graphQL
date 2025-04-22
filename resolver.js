@@ -52,6 +52,15 @@ export const resolvers = {
             db.games = db.games.filter((game) => game.id !== args.id)
             return db.games;
         },
+        updateGame(_, args){
+            db.games = db.games.map((game) => {
+                if(game.id === args.id){
+                    return {...game, ...args.edits};
+                }
+                return game
+            });
+            return db.games.find((game) => game.id === args.id)
+        },
         addAuthor(_, args) {
             let author = {
                 ...args.author,
@@ -64,6 +73,15 @@ export const resolvers = {
             db.authors = db.authors.filter((author) => author.id !== args.id);
             return db.authors;
         },
+        updateAuthor(_, args){
+            db.authors = db.authors.map((author) => {
+                if(author.id === args.id){
+                    return {...author, ...args.edits};
+                }
+                return author
+            });
+            return db.authors.find((author) => author.id === args.id)
+        },
         addReview(_, args) {
             let review = {
                 ...args.review,
@@ -75,6 +93,15 @@ export const resolvers = {
         deleteReview(_, args){
             db.reviews = db.reviews.filter((review) => review.id !== args.id);
             return db.reviews;
+        },
+        updateReview(_, args){
+            db.reviews = db.reviews.map((review) => {
+                if(review.id === args.id){
+                    return {...review, ...args.edits};
+                }
+                return review
+            });
+            return db.reviews.find((review) => review.id === args.id)
         },
     }
 }
